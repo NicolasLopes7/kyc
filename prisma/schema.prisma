@@ -3,12 +3,21 @@
 
 generator client {
     provider = "prisma-client-js"
-    previewFeatures = ["jsonProtocol"]
 }
 
 datasource db {
     provider = "sqlite"
     url      = env("DATABASE_URL")
+}
+
+model VerificationCode {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    expireAt  DateTime
+    code      String   @unique
+    email     String
+    verified  Boolean  @default(false)
 }
 
 model Example {
