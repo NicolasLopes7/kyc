@@ -1,5 +1,7 @@
 import Head from "next/head";
 import { type FormEvent } from "react";
+import { Button } from "~/components/ui/button";
+import { Input } from "~/components/ui/input";
 import { api } from "~/utils/api";
 
 export default function Home() {
@@ -28,12 +30,32 @@ export default function Home() {
         <meta name="description" content="Welcome onboard ACME!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center">
-        <h1 className="text-4xl font-bold">Welcome onboard ACME!</h1>
-        <form onSubmit={handleSubmit}>
-          <input type="email" id="email" name="email" />
-          <button type="submit">Click here to send an email</button>
-        </form>
+      <main className="flex min-h-screen items-center justify-center gap-4 p-10">
+        <section className="w-full lg:w-1/2">
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
+              <h1 className="text-4xl font-bold">Welcome to ACME!</h1>
+              <h3 className="text-slate-400">
+                Sign up or log in with your email address.
+              </h3>
+            </div>
+            <form onSubmit={handleSubmit} className="flex items-center gap-2">
+              <Input
+                type="email"
+                id="email"
+                name="email"
+                className=" max-w-sm rounded-lg"
+                placeholder="hello@acme.com"
+              />
+              <Button type="submit" className="whitespace-nowrap rounded-xl">
+                Continue
+              </Button>
+            </form>
+          </div>
+        </section>
+        <section className="hidden w-1/2 lg:block">
+          <img src="/onboarding-bg.jpeg" />
+        </section>
       </main>
     </>
   );
